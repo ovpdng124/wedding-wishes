@@ -1,12 +1,12 @@
 const $wishesContainer = $('#wishesContainer');
-const apiUrl = 'https://5al5s80f32.execute-api.ap-northeast-1.amazonaws.com/dev/wedding-wishes'; // Thay đổi đường dẫn API tại đây
+const apiUrl = 'https://5al5s80f32.execute-api.ap-northeast-1.amazonaws.com/dev/wedding-wishes';
 const delayAppear = 5000;
 
 let data = [];
 let wishesToDisplay = [];
 let displayInterval;
 
-// Hàm để lấy dữ liệu từ API
+// Fetch data from S3 via API Gateway and Lambda
 function fetchWishes() {
     $.ajax({
         url: apiUrl,
@@ -25,19 +25,19 @@ function fetchWishes() {
     });
 }
 
-// Hàm để xử lý dữ liệu mới và cũ
+// Handle new and old data. Store to the Local Storage.
 function processData() {
     const storedData = JSON.parse(localStorage.getItem('wishes')) || [];
     const newWishes = data.filter(wish => !storedData.some(storedWish => isEqual(wish, storedWish)));
 
     wishesToDisplay = [...newWishes, ...shuffleArray(storedData)];
-    console.log("WISHES: ", wishesToDisplay)
+
     data.length && localStorage.setItem('wishes', JSON.stringify(data));
 
     displayWishes();
 }
 
-// Hàm để so sánh hai đối tượng
+// Handle compare 2 object
 function isEqual(obj1, obj2) {
     const keys1 = Object.keys(obj1);
     const keys2 = Object.keys(obj2);
@@ -55,7 +55,7 @@ function isEqual(obj1, obj2) {
     return true;
 }
 
-// Hàm để hiển thị wishes lên trang web
+// Handle display the wishes to the screen
 function displayWishes() {
     if (displayInterval) {
         clearInterval(displayInterval);
@@ -66,7 +66,7 @@ function displayWishes() {
 
         if (index === wishesToDisplay.length) {
             clearInterval(displayInterval);
-            fetchWishes(); // Gọi lại API sau khi hiển thị xong
+            fetchWishes(); // Recall API when the loop end
 
             handleAppearWishes("Thank you!", "Let's scan the QR on the table to send the wish for us!")
 
@@ -95,5 +95,5 @@ function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
-// Gọi lấy dữ liệu ban đầu
+// Call the first time to get the data
 fetchWishes();
