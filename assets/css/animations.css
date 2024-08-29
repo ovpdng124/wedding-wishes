@@ -1,0 +1,177 @@
+/* 1. Shake */
+.shake span {
+    animation: shake 0.5s infinite;
+}
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* 2. Pulse */
+.pulse span {
+    animation: pulse 1s infinite;
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* 3. Flicker */
+.flicker span {
+    animation: flicker 0.5s infinite alternate;
+}
+@keyframes flicker {
+    0% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+/* 4. Wave */
+.wave span {
+    animation: wave 0.5s infinite;
+    animation-delay: calc(.1s * var(--i));
+}
+@keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* 5. Bounce */
+.bounce span {
+    animation: bounce 0.5s alternate infinite;
+    animation-delay: calc(.1s * var(--i));
+}
+@keyframes bounce {
+    100% { transform: translateY(-20px); }
+}
+
+/* 6. Fade */
+.fade span {
+    animation: fade 2s infinite;
+    animation-delay: calc(.1s * var(--i));
+}
+@keyframes fade {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* 7. Slide */
+.slide span {
+    animation: slide 15s infinite;
+    animation-delay: calc(.1s * var(--i));
+}
+@keyframes slide {
+    0% { transform: translateX(-320%); }
+    100% { transform: translateX(10%); }
+}
+
+/* 8. Glitch */
+.glitch span {
+    animation: glitch 0.5s infinite;
+}
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-5px, 5px); }
+    40% { transform: translate(-5px, -5px); }
+    60% { transform: translate(5px, 5px); }
+    80% { transform: translate(5px, -5px); }
+    100% { transform: translate(0); }
+}
+
+/* 9. Flip */
+.flip span {
+    animation: flip 2s infinite;
+    transform-style: preserve-3d;
+}
+@keyframes flip {
+    0%, 100% { transform: rotateY(0); }
+    50% { transform: rotateY(180deg); }
+}
+
+/* 10. Zoom */
+.zoom span {
+    animation: zoom 1s infinite alternate;
+}
+@keyframes zoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.5); }
+}
+
+/* 11. Elastic */
+.elastic span {
+    display: inline-block;
+    animation: elastic 0.5s infinite alternate;
+    animation-delay: calc(.1s * var(--i));
+}
+@keyframes elastic {
+    0% { transform: scaleX(1); }
+    100% { transform: scaleX(1.5); }
+}
+
+/* 12. Jello */
+.jello span {
+    animation: jello 0.9s both;
+    animation-delay: calc(.1s * var(--i));
+}
+@keyframes jello {
+    0%, 11.1%, 100% { transform: none; }
+    22.2% { transform: skewX(-12.5deg) skewY(-12.5deg); }
+    33.3% { transform: skewX(6.25deg) skewY(6.25deg); }
+    44.4% { transform: skewX(-3.125deg) skewY(-3.125deg); }
+    55.5% { transform: skewX(1.5625deg) skewY(1.5625deg); }
+    66.6% { transform: skewX(-0.78125deg) skewY(-0.78125deg); }
+    77.7% { transform: skewX(0.390625deg) skewY(0.390625deg); }
+    88.8% { transform: skewX(-0.1953125deg) skewY(-0.1953125deg); }
+}
+
+/* 13. Swing */
+.swing span {
+    transform-origin: top center;
+    animation: swing 1s infinite;
+}
+@keyframes swing {
+    20% { transform: rotate(15deg); }
+    40% { transform: rotate(-10deg); }
+    60% { transform: rotate(5deg); }
+    80% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* 14. Rubber Band */
+.rubberBand span {
+    animation: rubberBand 1s infinite;
+}
+@keyframes rubberBand {
+    0% { transform: scale(1); }
+    30% { transform: scaleX(1.25) scaleY(0.75); }
+    40% { transform: scaleX(0.75) scaleY(1.25); }
+    50% { transform: scaleX(1.15) scaleY(0.85); }
+    65% { transform: scaleX(0.95) scaleY(1.05); }
+    75% { transform: scaleX(1.05) scaleY(0.95); }
+    100% { transform: scale(1); }
+}
+
+/* 15. Floating */
+.floating span {
+    animation: floating 3s ease-in-out infinite;
+}
+@keyframes floating {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* 16. Rainbow */
+.rainbow span {
+    animation: rainbow 5s infinite;
+}
+@keyframes rainbow {
+    0% { color: red; }
+    14% { color: orange; }
+    28% { color: yellow; }
+    42% { color: green; }
+    57% { color: blue; }
+    71% { color: indigo; }
+    85% { color: violet; }
+    100% { color: red; }
+}

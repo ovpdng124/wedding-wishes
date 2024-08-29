@@ -5,11 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wishes Display</title>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/content-animations.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-Hello World
-<div id="wishesContainer"></div>
-<script src="assets/scripts/app.js"></script>
+    <section class="background">
+        <div id="wishesContainer">
+            <p class="content color-change">Xin chân thành cảm ơn các cô, chú, anh, chị và các bạn đã đến chung vui cùng gia đình!</p>
+            <i class="sender color-change">Văn Phát & Thùy Vân</i>
+        </div>
+    </section>
 </body>
+<script src="assets/scripts/app.js"></script>
 </html>

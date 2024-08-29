@@ -1,0 +1,124 @@
+.char {
+    display: inline-block;
+    margin-right: 0.25em;
+    opacity: 0;
+}
+.space {
+    display: inline-block;
+    width: 0.25em;
+}
+
+/* 1. Typing effect */
+.typing .char {
+    opacity: 0;
+    animation: typing 0.05s forwards;
+}
+
+@keyframes typing {
+    to { opacity: 1; }
+}
+
+/* 2. Drop effect */
+.dropping .char {
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: dropping 0.5s forwards;
+}
+
+@keyframes dropping {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 3. Zoom effect */
+.zooming .char {
+    opacity: 0;
+    transform: scale(5);
+    animation: zooming 0.5s forwards;
+}
+
+@keyframes zooming {
+    from {
+        opacity: 0;
+        transform: scale(5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 4. Flip effect */
+.flipping .char {
+    opacity: 0;
+    transform: rotateX(-90deg);
+    transform-origin: 50% 50%;
+    animation: flipping 0.5s forwards;
+}
+
+@keyframes flipping {
+    from {
+        opacity: 0;
+        transform: rotateX(-90deg);
+    }
+    to {
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+}
+
+/* 5. Fade-in effect */
+.fading .char {
+    opacity: 0;
+    animation: fading 0.5s forwards;
+}
+
+@keyframes fading {
+    to {
+        opacity: 1;
+    }
+}
+
+/* 6. Slide-in from left effect */
+.sliding-left .char {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: sliding-left 0.5s forwards;
+}
+
+@keyframes sliding-left {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 7. Slide-in from right effect */
+.sliding-right .char {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: sliding-right 0.5s forwards;
+}
+
+@keyframes sliding-right {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 8. Spin effect */
+.spinning .char {
+    opacity: 0;
+    transform: rotate(0deg);
+    animation: spinning 0.5s forwards;
+}
+
+@keyframes spinning {
+    to {
+        opacity: 1;
+        transform: rotate(360deg);
+    }
+}
