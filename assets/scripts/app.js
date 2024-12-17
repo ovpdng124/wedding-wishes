@@ -95,7 +95,7 @@ function displayWishes() {
             clearInterval(displayInterval);
             fetchWishes(); // Recall API when the loop end
 
-            handleAppearWishes("Thank you!", "Hãy quét mã QR trên bàn để nhắn gửi lời hay ý đẹp đến tụi mình nhé! ^_^")
+            // handleAppearWishes("Thank you!", "Hãy quét mã QR trên bàn để nhắn gửi lời hay ý đẹp đến tụi mình nhé! ^_^")
 
             return;
         }
