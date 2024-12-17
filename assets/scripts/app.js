@@ -42,11 +42,19 @@ function fetchWishes() {
 
 // Handle new and old data. Store to the Local Storage.
 function processData() {
+    console.log("data", data);
+    // Get wishes stored in localstorage.
     const storedData = JSON.parse(localStorage.getItem('wishes')) || [];
+
+    // Filter the deleted wishes
+    const validStoredData = storedData.filter(storedWish => data.some(wish => isEqual(wish, storedWish)));
+
+    // Detect new wishes
     const newWishes = data.filter(wish => !storedData.some(storedWish => isEqual(wish, storedWish)));
 
-    wishesToDisplay = [...newWishes, ...shuffleArray(storedData)];
-
+    // Push new wishes to head and shuffle old wishes.
+    wishesToDisplay = [...newWishes, ...shuffleArray(validStoredData)];
+    console.log("DATA SHOW: ", wishesToDisplay)
     data.length && localStorage.setItem('wishes', JSON.stringify(data));
 
     displayWishes();
