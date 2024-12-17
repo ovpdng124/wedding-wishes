@@ -18,7 +18,7 @@
 <body>
     <section class="background">
         <div id="wishesContainer">
-            <p class="content color-change">Xin chân thành cảm ơn các cô, chú, anh, chị và các bạn đã đến chung vui cùng gia đình!</p>
+            <p class="content color-change">Xin chân thành cảm ơn cô chú, anh chị và các bạn đã đến chung vui cùng gia đình!</p>
             <i class="sender color-change">Văn Phát & Thùy Vân</i>
         </div>
     </section>
@@ -27,7 +27,7 @@
 </body>
 
 <script>
-  const backgrounds = [
+  let backgrounds = [
     'assets/images/bg1.jpg',
     'assets/images/bg2.jpeg',
     'assets/images/bg3.jpeg',
@@ -44,7 +44,7 @@
     'assets/images/bg14.jpeg',
     'assets/images/bg15.jpeg',
     'assets/images/bg16.jpeg',
-    'assets/images/bg17.jpg',
+    'assets/images/bg17.jpeg',
     'assets/images/bg18.jpeg',
     'assets/images/bg19.jpeg',
     'assets/images/bg20.jpeg',
@@ -54,10 +54,21 @@
   const overlay1 = document.getElementById('backgroundOverlay1');
   const overlay2 = document.getElementById('backgroundOverlay2');
 
+  // Hàm preload ảnh
+  function preloadImages() {
+    backgrounds.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }
+
   function changeBackground() {
-    shuffleArray(backgrounds);
     // Tăng chỉ mục, quay lại 0 nếu vượt quá số lượng hình
     currentIndex = (currentIndex + 1) % backgrounds.length;
+
+    if (currentIndex === 0) {
+      backgrounds = shuffleArray(backgrounds)
+    }
 
     // Chọn overlay không active để làm background mới
     const activeOverlay = overlay1.classList.contains('active') ? overlay2 : overlay1;
@@ -77,16 +88,21 @@
     }, 50); // Delay nhỏ để đảm bảo hiệu ứng chuyển đổi
   }
 
-  function shuffleArray(array) {
-    return array.sort(() => Math.random() - 0.5);
+  // Hàm khởi tạo
+  function init() {
+    // Preload ảnh trước
+    preloadImages();
+
+    // Thay đổi background ban đầu
+    overlay1.style.backgroundImage = `url('${backgrounds[0]}')`;
+    overlay1.classList.add('active');
+
+    // Thay đổi background mỗi 10 giây
+    setInterval(changeBackground, 10000);
   }
 
-  // Thay đổi background ban đầu
-  overlay1.style.backgroundImage = `url('${backgrounds[0]}')`;
-  overlay1.classList.add('active');
-
-  // Thay đổi background mỗi 5 giây
-  setInterval(changeBackground, 10000);
+  // Chạy init khi tất cả ảnh đã load
+  window.addEventListener('load', init);
 </script>
 <script src="assets/scripts/app.js"></script>
 </html>
