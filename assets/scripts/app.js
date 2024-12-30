@@ -29,19 +29,19 @@ function fetchWishes() {
         headers: {
             'Content-Type': 'application/json'
         },
-        success: function (apiData) {
+        success: async function (apiData) {
             data = apiData;
-            processData();
+            await processData();
         },
-        error: function (error) {
+        error: async function (error) {
             console.error('Error fetching data:', error);
-            processData();
+            await processData();
         }
     });
 }
 
 // Handle new and old data. Store to the Local Storage.
-function processData() {
+async function processData() {
     console.log("data", data);
     // Get wishes stored in localstorage.
     const storedData = JSON.parse(localStorage.getItem('wishes')) || [];
@@ -57,7 +57,7 @@ function processData() {
     console.log("DATA SHOW: ", wishesToDisplay)
     data.length && localStorage.setItem('wishes', JSON.stringify(data));
 
-    displayWishes();
+    await displayWishes();
 }
 
 function shuffleArray(array) {
@@ -83,29 +83,44 @@ function isEqual(obj1, obj2) {
 }
 
 // Handle display the wishes to the screen
-function displayWishes() {
+async function displayWishes() {
     if (displayInterval) {
         clearInterval(displayInterval);
     }
 
-    let index = 0;
-    displayInterval = setInterval(function () {
-
-        if (index === wishesToDisplay.length) {
-            clearInterval(displayInterval);
-            fetchWishes(); // Recall API when the loop end
-
-            // handleAppearWishes("Thank you!", "Hãy quét mã QR trên bàn để nhắn gửi lời hay ý đẹp đến tụi mình nhé! ^_^")
-
-            return;
-        }
-
-        const wish = wishesToDisplay[index];
+    for (let i = 0; i < wishesToDisplay.length; i++) {
+        const wish = wishesToDisplay[i];
+        const delayTime = wish.content.length > 30 ? 15 : (wish.content.length < 5 ? 5 : wish.content.length / 2);
 
         handleAppearWishes(wish.name, wish.content)
 
-        index++;
-    }, delayAppear);
+        await delay(delayTime * 1000);
+    }
+
+    fetchWishes(); // Recall API when the loop end
+
+    // let index = 0;
+    // displayInterval = setInterval(function () {
+    //
+    //     if (index === wishesToDisplay.length) {
+    //         clearInterval(displayInterval);
+    //         fetchWishes(); // Recall API when the loop end
+    //
+    //         // handleAppearWishes("Thank you!", "Hãy quét mã QR trên bàn để nhắn gửi lời hay ý đẹp đến tụi mình nhé! ^_^")
+    //
+    //         return;
+    //     }
+    //
+    //     const wish = wishesToDisplay[index];
+    //
+    //     handleAppearWishes(wish.name, wish.content)
+    //
+    //     index++;
+    // }, delayAppear);
+}
+
+async function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function handleAppearWishes(sender, content) {
